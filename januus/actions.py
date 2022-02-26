@@ -3,6 +3,8 @@ from os.path import isfile, join, split
 
 import shutil
 
+exclude = ('.jan',)
+
 def _get_all_files(path=''):
     """
     @return files: [str] returns paths to all files in the repository
@@ -26,7 +28,7 @@ def copy_all_files(jan_path=join('.jan', '0'), path=''):
     for file_name in file_names:
         file_path = join(path, file_name)
         jan_file_path = join(jan_path, file_path)
-        if split(file_path)[:2] == split(jan_path):
+        if split(file_path)[0] in exclude:
             continue
 
         if isfile(file_path):
@@ -63,4 +65,3 @@ def initialise():
     """
     mkdir('.jan')
     resolute(0)
-    
