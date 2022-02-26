@@ -89,9 +89,6 @@ def tally(**kwargs):
     resolutions.reverse()
     for resolution in resolutions:
         message_file = open(join('.jan', str(resolution) + '.message'), 'r')
-        datetime_file = open(join('.jan', str(resolution) + '.datetime'), 'r')
         message = message_file.read()
-        _datetime = datetime.fromtimestamp(int(datetime_file.read()))
-        datetime_file.close()
         message_file.close()
-        print(f'{resolution} : {message} < {_datetime.strftime("%d %B %Y, %H:%M:%S")} >')
+        print(f'{resolution} : {message}')
