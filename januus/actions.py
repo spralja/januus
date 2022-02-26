@@ -18,7 +18,7 @@ def _get_all_files(path=''):
     return files
 
 
-def copy_all_files(jan_path=join('.jan', '1'), path=''):
+def copy_all_files(jan_path=join('.jan', '0'), path=''):
     """
     Copies all files from the repository to '.jan/version'
     """
@@ -41,7 +41,7 @@ def initialise():
     Initialises the repository
     """
     mkdir('.jan')
-    mkdir(join('.jan', '1'))
+    mkdir(join('.jan', '0'))
     copy_all_files()
     
 
