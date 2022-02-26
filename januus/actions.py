@@ -33,17 +33,8 @@ def copy_all_files(jan_path=join('.jan', '0'), path=''):
             shutil.copy(file_path, jan_file_path)
         else:
             mkdir(jan_file_path)
-            copy_all_files(jan_path=jan_path, path=file_path)
+            copy_all_files(jan_path=jan_path, path=file_path)    
 
-
-def initialise():
-    """
-    Initialises the repository
-    """
-    mkdir('.jan')
-    mkdir(join('.jan', '0'))
-    copy_all_files()
-    
 
 def what_version():
     """
@@ -53,11 +44,23 @@ def what_version():
     versions = [int(v) for v in dirs]
     return max(versions) + 1
 
-def resolute():
+
+def resolute(version=None):
     """
     Create snapshot of repository
     """
-    version = what_version()
+    if not version:
+        version = what_version()
+
     jan_path = join('.jan', str(version))
     mkdir(jan_path)
     copy_all_files(jan_path=jan_path)
+
+
+def initialise():
+    """
+    Initialises the repository
+    """
+    mkdir('.jan')
+    resolute(0)
+    
