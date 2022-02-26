@@ -79,7 +79,7 @@ def initialise(**kwargs):
     resolute(kwargs['message'], 0)
 
 
-def log(**kwargs):
+def tally(**kwargs):
     resolutions = [i for i in range(what_version())]
     resolutions.reverse()
     for resolution in resolutions:
