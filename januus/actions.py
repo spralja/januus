@@ -45,5 +45,19 @@ def initialise():
     copy_all_files()
     
 
+def what_version():
+    """
+    Figure out current version
+    """
+    dirs = listdir('.jan')
+    versions = [int(v) for v in dirs]
+    return max(versions) + 1
+
 def resolute():
-    pass
+    """
+    Create snapshot of repository
+    """
+    version = what_version()
+    jan_path = join('.jan', str(version))
+    mkdir(jan_path)
+    copy_all_files(jan_path=jan_path)
