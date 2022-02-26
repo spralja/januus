@@ -1,10 +1,11 @@
 import argparse
 
-from .actions import initialise, resolute
+from .actions import initialise, resolute, log
 
 commands = {
     'initialise': initialise,
     'resolute': resolute,
+    'log': log,
 }
 
 if __name__ == '__main__':
@@ -12,8 +13,9 @@ if __name__ == '__main__':
     subparsers = parser.add_subparsers(help='sub-command help', dest='command')
     initialise = subparsers.add_parser('initialise', help='Create repository')
     resolute = subparsers.add_parser('resolute', help='Create permanent snapshot of repository')
+    log = subparsers.add_parser('log', help='Log resolutions')
     resolute.add_argument('-m', help='add a message', dest='message')
     initialise.add_argument('-m', help='add a message', dest='message')
     args = parser.parse_args()
-    commands[args.command](args.message)
+    commands[args.command](**args.__dict__)
     

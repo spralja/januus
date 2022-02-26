@@ -52,11 +52,11 @@ def what_version():
     Figure out current version
     """
     dirs = listdir('.jan')
-    versions = [int(v) for v in dirs]
+    versions = [int(v) for v in dirs if not isfile(join('.jan', v))]
     return max(versions) + 1
 
 
-def resolute(message, version=None):
+def resolute(version=None, **kwargs):
     """
     Create snapshot of repository
     """
@@ -66,14 +66,24 @@ def resolute(message, version=None):
     jan_path = join('.jan', str(version))
     mkdir(jan_path)
     message_file = open(jan_path + '.message', 'w')
-    message_file.write(message)
+    message_file.write(kwargs['message'])
     message_file.close()
     copy_all_files(jan_path=jan_path)
 
 
-def initialise(message):
+def initialise(**kwargs):
     """
     Initialises the repository
     """
     mkdir('.jan')
-    resolute(message, 0)
+    resolute(kwargs['message'], 0)
+
+
+def log(**kwargs):
+    resolutions = [i for i in range(what_version())]
+    resolutions.reverse()
+    for resolution in resolutions:
+        message_file = open(join('.jan', str(resolution) + '.message'), 'r')
+        message = message_file.read()
+        message_file.close()
+        print(f'{resolution} : {message}')
