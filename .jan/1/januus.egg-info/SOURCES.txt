@@ -1,0 +1,10 @@
+LICENSE
+README.md
+pyproject.toml
+setup.cfg
+./januus/__init__.py
+./tests/__init__.py
+januus.egg-info/PKG-INFO
+januus.egg-info/SOURCES.txt
+januus.egg-info/dependency_links.txt
+januus.egg-info/top_level.txt
