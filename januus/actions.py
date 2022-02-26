@@ -43,3 +43,7 @@ def initialise():
     mkdir('.jan')
     mkdir(join('.jan', '1'))
     copy_all_files()
+    
+
+def resolute():
+    pass
